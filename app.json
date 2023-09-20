@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "rma-spotify-app",
+    "slug": "rma-spotify-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.gievepix.rma-spotify-app",
+      "runtimeVersion": {
+        "policy": "appVersion"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.gievepix.rmaspotifyapp",
+      "runtimeVersion": "1.0.0"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b0acfb76-2a86-46aa-ac83-8c18b96a97d8"
+      }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/b0acfb76-2a86-46aa-ac83-8c18b96a97d8"
+    },
+    "scheme": "lolll"
+  }
+}
