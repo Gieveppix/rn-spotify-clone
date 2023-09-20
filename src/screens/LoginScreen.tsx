@@ -74,7 +74,7 @@ const LoginScreen = () => {
           onPress={() => promptAsync()}
           style={{
             backgroundColor: "#1DB954",
-            padding: 10,
+            padding: 50,
             marginLeft: "auto",
             marginRight: "auto",
             width: 300,
@@ -84,70 +84,12 @@ const LoginScreen = () => {
             marginVertical:10
           }}
         >
-          <Text>Sign In with spotify</Text>
-        </Pressable>
-
-        <Pressable
-          style={{
-            backgroundColor: "#131624",
-            padding: 10,
-            marginLeft: "auto",
-            marginRight: "auto",
-            width: 300,
-            borderRadius: 25,
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection:"row",
-            alignItems:"center",
-            marginVertical:10,
-            borderColor:"#C0C0C0",
-            borderWidth:0.8
-          }}
-        >
-          <MaterialIcons name="phone-android" size={24} color="white" />
-          <Text style={{fontWeight:"500",color:"white",textAlign:"center",flex:1}}>Continue with phone number</Text>
-        </Pressable>
-
-        <Pressable
-          style={{
-            backgroundColor: "#131624",
-            padding: 10,
-            marginLeft: "auto",
-            marginRight: "auto",
-            width: 300,
-            borderRadius: 25,
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection:"row",
-            alignItems:"center",
-            marginVertical:10,
-            borderColor:"#C0C0C0",
-            borderWidth:0.8
-          }}
-        >
-        <AntDesign name="google" size={24} color="red" />
-          <Text style={{fontWeight:"500",color:"white",textAlign:"center",flex:1}}>Continue with Google</Text>
-        </Pressable>
-
-        <Pressable
-          style={{
-            backgroundColor: "#131624",
-            padding: 10,
-            marginLeft: "auto",
-            marginRight: "auto",
-            width: 300,
-            borderRadius: 25,
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection:"row",
-            alignItems:"center",
-            marginVertical:10,
-            borderColor:"#C0C0C0",
-            borderWidth:0.8
-          }}
-        >
-         <Entypo name="facebook" size={24} color="blue" />
-          <Text style={{fontWeight:"500",color:"white",textAlign:"center",flex:1}}>Sign In with facebook</Text>
+          <Text style={{
+            color: "white",
+            fontSize: 20,
+            fontWeight: "bold",
+            textAlign: "center",
+          }}>Sign In with Spotify</Text>
         </Pressable>
       </SafeAreaView>
     </LinearGradient>
