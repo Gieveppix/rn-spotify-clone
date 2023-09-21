@@ -33,7 +33,7 @@ const LoginScreen = () => {
       // In order to follow the "Authorization Code Flow" to fetch token after authorizationEndpoint
       // this must be set to false
       usePKCE: false,
-      redirectUri: "exp://localhost:8081/--/spotify-auth-callback"
+      redirectUri: "exp://192.168.94.1:8081/--/spotify-auth-callback"
     },
     discovery
   );
@@ -63,6 +63,8 @@ const LoginScreen = () => {
             fontSize: 40,
             fontWeight: "bold",
             textAlign: "center",
+            marginLeft: 40,
+            marginRight: 40,
             marginTop: 40,
           }}
         >

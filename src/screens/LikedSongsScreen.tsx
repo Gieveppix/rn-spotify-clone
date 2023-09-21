@@ -78,7 +78,7 @@ const LikedSongsScreen = () => {
     }
     await play(savedTracks[0]);
   };
-  const play = debounce(async (nextTrack) => {
+  const play = async (nextTrack) => {
     console.log(nextTrack);
     const preview_url = nextTrack?.track?.preview_url;
     try {
@@ -107,7 +107,8 @@ const LikedSongsScreen = () => {
     } catch (err) {
       console.log(err.message);
     }
-  }, 500);
+  };
+  
   const onPlaybackStatusUpdate = async (status) => {
     console.log(status);
     if (status.isLoaded && status.isPlaying) {
@@ -374,7 +375,10 @@ const LikedSongsScreen = () => {
 
       <BottomModal
         visible={modalVisible}
-        onHardwareBackPress={() => setModalVisible(false)}
+        onHardwareBackPress={() => {
+          setCurrentTrack(null)
+          setModalVisible(false)}
+        }
         swipeDirection={["up", "down"]}
         swipeThreshold={200}
       >

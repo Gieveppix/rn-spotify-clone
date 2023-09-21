@@ -14,10 +14,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Feather, FontAwesome } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
-import SongItem from "../components/SongItem";
 import { Player } from "../PlayerContext";
 import { BottomModal } from "react-native-modals";
 import { ModalContent } from "react-native-modals";
@@ -198,7 +195,7 @@ const SearchSongsScreen = () => {
       console.log("end of playlist");
     }
   };
-  const debouncedSearch = debounce(getSavedTracks, 800);
+  const debouncedSearch = debounce(getSavedTracks, 600);
   function handleSearch() {
     if(savedTracks.length){
       const filteredTracks = savedTracks.filter((item) =>
@@ -211,7 +208,7 @@ const SearchSongsScreen = () => {
   const handleInputChange = (text) => {
     setInput(text);
     if (text.length !== 0) {
-      debouncedSearch(text); // Call the debounced search function
+      debouncedSearch(text);
     }
   };
 
@@ -226,7 +223,6 @@ const SearchSongsScreen = () => {
           <Pressable
             onPress={() => {
               setCurrentTrack(null)
-              handlePlayPause()
               navigation.goBack()
             }}
             style={{ marginHorizontal: 10 }}
@@ -372,7 +368,10 @@ const SearchSongsScreen = () => {
 
       <BottomModal
         visible={modalVisible}
-        onHardwareBackPress={() => setModalVisible(false)}
+        onHardwareBackPress={() => {
+          setCurrentTrack(null)
+          setCurrentSound(null)
+          setModalVisible(false)}}
         swipeDirection={["up", "down"]}
         swipeThreshold={200}
       >

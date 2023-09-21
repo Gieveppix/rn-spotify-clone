@@ -5,7 +5,6 @@ import { Entypo } from "@expo/vector-icons";
 import { Player } from "../PlayerContext";
 
 const SearchSongItem = ({ item, onPress, isPlaying }) => {
-  console.log(":::::::::::ITEM:::::::::::::", item)
   const { currentTrack, setCurrentTrack } = useContext(Player);
   const handlePress = () => {
     setCurrentTrack(item);
