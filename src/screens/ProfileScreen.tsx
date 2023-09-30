@@ -1,13 +1,30 @@
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
+import { getAllTracks } from '../logic/firebaseConfig';
 
 const ProfileScreen = () => {
   const [userProfile, setUserProfile] = useState(null);
   const [playlists, setPlaylists] = useState([]);
+  const [tracks, setTracks] = useState([]);
+  let trackList = null;
 
+  const retrieveTracks = async () => {
+    try {
+      const response = await getAllTracks();
+      const trackArray = Object.values(response);
+      setTracks(trackArray);
+    } catch (error) {
+      console.log("Do nothing", error);
+      throw error;
+    }
+  };
+
+  useEffect(() => {
+    retrieveTracks();
+  }, []);
   useEffect(() => {
     const getPlaylists = async () => {
       try {
@@ -112,6 +129,20 @@ const ProfileScreen = () => {
             </View>
           ))}
         </View>
+        <View>
+          <FlatList
+            data={tracks}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+              <Text style={{color:"white"}}>Track: {item.data.trackName} was played {item.data.playCount}</Text>
+            )}
+          />
+          <TouchableOpacity onPress={retrieveTracks}>
+            <Text style= {{color: "gray", fontSize: 16, fontWeight: "bold"}} >
+                  Refresh
+                </Text>
+          </TouchableOpacity>
+          </View>
       </ScrollView>
     </LinearGradient>
   );

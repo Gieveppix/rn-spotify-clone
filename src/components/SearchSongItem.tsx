@@ -3,10 +3,41 @@ import React ,{useContext} from  "react";
 import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { Player } from "../PlayerContext";
+import { db } from "../logic/firebaseConfig";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import { doc, updateDoc, increment, setDoc, getDoc} from "firebase/firestore"
 
 const SearchSongItem = ({ item, onPress, isPlaying }) => {
   const { currentTrack, setCurrentTrack } = useContext(Player);
-  const handlePress = () => {
+
+  const updateFirebaseDocument = async (trackId, trackName) => {
+    try {
+      const trackRef = doc(db, 'tracks', trackId); // Use the trackId as the document ID
+      const trackSnapshot = await getDoc(trackRef);
+  
+      if (trackSnapshot.exists()) {
+        // Track document exists, update the 'playCount' field
+        await updateDoc(trackRef, {
+          playCount: increment(1),
+        });
+      } else {
+        // Track document doesn't exist, create a new one
+        await setDoc(trackRef, {
+          trackName: trackName,
+          playCount: 1, // Initialize playCount to 1
+        });
+      }
+  
+      console.log(':::::::::::::::::::::::::::::::::::::::::Document updated successfully.:::::::::::::::::::::::::::::::::::::::::');
+    } catch (error) {
+      console.error(':::::::::::::::::::::::::::::::::::::::::Error updating document:::::::::::::::::::::::::::::::::::::::::', error);
+    }
+  };
+
+  const handlePress = async () => {
+    console.log("::::::::::::::::::::::::::ITEM::::::::::::::::", item)
+    await updateFirebaseDocument(item.id, item.name);
     setCurrentTrack(item);
     onPress(item)
   } 

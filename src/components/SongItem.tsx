@@ -3,10 +3,19 @@ import React ,{useContext} from  "react";
 import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { Player } from "../PlayerContext";
+import { updateFirebaseDocument } from "../logic/firebaseConfig";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+
 
 const SongItem = ({ item, onPress, isPlaying }) => {
   const { currentTrack, setCurrentTrack } = useContext(Player);
-  const handlePress = () => {
+
+  const handlePress = async () => {
+    console.log(":::::::::::::::::::::THIS IS WHAT IS NEEDED::::::::::::::::", 
+    item.track.id, 
+    item.track.name)
+    await updateFirebaseDocument(item.track.id, item.track.name);
     setCurrentTrack(item);
     onPress(item)
   } 
