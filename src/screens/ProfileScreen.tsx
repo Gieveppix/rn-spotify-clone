@@ -130,15 +130,19 @@ const ProfileScreen = () => {
           ))}
         </View>
         <View>
-          <FlatList
-            data={tracks}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => (
-              <Text style={{color:"white"}}>Track: {item.data.trackName} was played {item.data.playCount}</Text>
-            )}
-          />
+        <FlatList
+          data={tracks}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <TouchableOpacity style={{ marginBottom: 10 }}>
+              <Text style={{ color: "white" }}>
+                Track: {item.data.trackName} was played {item.data.playCount}
+              </Text>
+            </TouchableOpacity>
+          )}
+        />
           <TouchableOpacity onPress={retrieveTracks}>
-            <Text style= {{color: "gray", fontSize: 16, fontWeight: "bold"}} >
+            <Text style= {{color: "gray", fontSize: 16, fontWeight: "bold", marginBottom: 100}} >
                   Refresh
                 </Text>
           </TouchableOpacity>
